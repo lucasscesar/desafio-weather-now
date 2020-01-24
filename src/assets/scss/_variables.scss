@@ -1,10 +1,8 @@
-$font-family: Helvetica, Arial;
+$font-family: "Helvetica Neue", Arial, sans-serif;
 
-$fonts: (
-    "default": 16px,
-    "number": 32px,
-    "infos": 8px
-);
+$f-default: 16px;
+$f-number: 32px;
+$f-infos: 12px;
 
 $colors: (
     "cardFooter": rgba(#F1F1F1, 0.5),
@@ -15,5 +13,6 @@ $colors: (
     "secondary": #B4B4B4, 
     "cold": #69A3FF,
     "neutral": #FF9632,
-    "hot": #ED1946
+    "hot": #ED1946,
+    "white": #FFFFFF
 );

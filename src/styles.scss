@@ -1,6 +1,9 @@
 @import './assets/scss/variables';
+@import './assets/scss/helpers';
+@import './assets/scss/functions';
 
 body {
     font-family: $font-family;
-    font-size: map-get($fonts, "default");
+    font-size: $f-default;
+    color: color("primary");
 }

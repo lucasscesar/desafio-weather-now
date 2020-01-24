@@ -1,28 +1,26 @@
-%container {
-    max-width: 1140px;
-    margin: auto;
-}
+@import "variables";
+@import 'functions';
+
+$heightH: 54px;
 
 .header {
-    &__container {
-        @extend %container;
+    background: color("white");
+    position: sticky;
+    top: 0;
+    padding: 10px 0;
+    text-align: center;
+
+    &__link {
+        display: inline-block;
     }
 
-    &__link {}
-
-    &__logo {}
+    &__logo {
+        width: 200px;
+        height: 100%;
+    }
 }
 
 .main {
-    &__container {
-        @extend %container;
-    }
-}
-
-.footer {
-    &__container {
-        @extend %container;
-    }
-
-    &__description {}
+    min-height: calc(100vh - #{$heightH});
+    background: color("app");
 }

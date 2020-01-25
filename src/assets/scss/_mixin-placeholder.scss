@@ -1,0 +1,65 @@
+%reset-button {
+    transition: 400ms all;
+    display: inline-block;
+    box-shadow: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 0 20px;
+    border-radius: 35px;
+    border-style: solid;
+}
+
+@mixin button($height: 45px) {
+    @extend %reset-button;
+    height: $height;
+    line-height: normal;
+
+    &--primary {
+        border: 2px solid color("primary");
+        background: color("primary");
+        color: color("white");
+
+        &:hover,
+        &:focus {
+            background: darken(color("primary"), 15%);
+            border-color: darken(color("primary"), 15%);
+        }
+    }
+
+    &--secondary {
+        border: 2px solid color("primary");
+        background: none;
+        color: color("primary");
+
+        &:hover,
+        &:focus {
+            background: color("cardFooter");
+        }
+    }
+
+    &--hot {
+        border: 2px solid color("hot");
+        background: color("hot");
+        color: color("white");
+
+        &:hover,
+        &:focus {
+            background: darken(color("hot"), 15%);
+            border-color: darken(color("hot"), 15%);
+        }
+    }
+}
+
+@mixin media-queries($name, $type: min) {
+    @if map_has_key($breakpoints, $name) {
+        $width: map_get($breakpoints, $name);
+
+        @if $type==max {
+            $width: $width - 1px;
+        }
+
+        @media only screen and (#{$type}-width: $width) {
+            @content;
+        }
+    }
+}

@@ -1,8 +1,10 @@
 $font-family: "Helvetica Neue", Arial, sans-serif;
 
 $f-default: 16px;
-$f-number: 32px;
+$f-number: 80px;
 $f-infos: 12px;
+
+$glutter: 30px;
 
 $colors: (
     "cardFooter": rgba(#F1F1F1, 0.5),
@@ -15,4 +17,11 @@ $colors: (
     "neutral": #FF9632,
     "hot": #ED1946,
     "white": #FFFFFF
+);
+
+$breakpoints: (
+  "phone": 576px,
+  "phone-wide": 768px,
+  "tablet": 992px,
+  "desktop": 1200px
 );

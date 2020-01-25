@@ -1,6 +1,11 @@
 @import './assets/scss/variables';
-@import './assets/scss/helpers';
 @import './assets/scss/functions';
+@import './assets/scss/mixin-placeholder';
+@import './assets/scss/helpers';
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     font-family: $font-family;

@@ -1,26 +1,19 @@
 <section class="card">
-    <h2 class="card__title">Urubici, BR</h2>
+    <h2 class="card__title">{{city.name}}</h2>
     <div class="card__content">
-        <h3 class="card__temperature card__temperature--hot">19°</h3>
+        <h3 class="card__temperature" ngClass="{{getTemperatureStyle()}}">{{city.temperature}}°</h3>
         <div class="card__climate">
             <p class="card__info">
                 HUMIDIY
-                <strong class="card__info-strong">78<sub>%</sub></strong>
+                <strong class="card__info-strong">{{city.humidity}}<sub>%</sub></strong>
             </p>
             <p class="card__info">
                 PRESSURE
-                <strong class="card__info-strong">892<sub>hPa</sub></strong></p>
-            <small class="card__updated">Updated at 02:48:27 PM</small>
+                <strong class="card__info-strong">{{city.pressure}}<sub>hPa</sub></strong>
+            </p>
+            <small class="card__updated">Updated at {{lastUpdate | date:'mediumTime' }}</small>
         </div>
     </div>
-    <!-- <div class="card__error" role="alert">
-    <p class="card__error-description">Something went wrong</p>
-    <button class="card__error-button">Try again</button>
-</div>
-<div class="card__loading" role="alert">
-    <p class="sr-only">conteúdo carregando</p>
-    <img src="/assets/imgs/loader.svg" alt="loading dos cards">
-</div> -->
 </section>
 <!-- <section class="card card--error">
     <h2 class="card__title">Urubici, BR</h2>

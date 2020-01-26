@@ -3,16 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CardComponent } from './components/card/card.component';
+import { TemperatureFormatPipe } from './pipes/temperature-format/temperature-format.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardComponent
+    CardComponent,
+    TemperatureFormatPipe
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [TemperatureFormatPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

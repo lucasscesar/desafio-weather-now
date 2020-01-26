@@ -11,14 +11,8 @@
 <main class="main">
   <div class="grid grid--padding">
     <div class="grid__row">
-      <div class="grid__column">
-        <app-card></app-card>
-      </div>
-      <div class="grid__column">
-        <app-card></app-card>
-      </div>
-      <div class="grid__column">
-        <app-card></app-card>
+      <div class="grid__column" *ngFor="let id of ids">
+        <app-card id="{{id}}"></app-card>
       </div>
     </div>
   </div>

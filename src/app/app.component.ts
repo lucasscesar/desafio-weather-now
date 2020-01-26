@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
-  title = 'desafio-weather-now';
+  ids: string[] = ['3421319', '3445709', '184745'];
 }

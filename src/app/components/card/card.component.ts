@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { City } from './../../models/card/city.model';
+import { City } from '../../models/city.model';
 import { TemperatureFormatPipe } from '../../pipes/temperature-format/temperature-format.pipe';
+import { CityService } from '../../services/city/city.service';
 
 @Component({
   selector: 'app-card',
@@ -14,15 +15,18 @@ export class CardComponent implements OnInit {
   city: City;
   lastUpdate: Date;
 
-  constructor(private pipe: TemperatureFormatPipe) {
+  constructor(private pipe: TemperatureFormatPipe, private cityService: CityService) {
     this.getCity();
   }
 
   ngOnInit() { }
 
   getCity = () => {
-    this.city = new City('2172797', 'São Paulo, BR', this.pipe.transform(35), 77, 1007);
+    this.city = new City('2172797', 'São Paulo, BR', this.pipe.transform(88), 77, 1007);
     this.lastUpdate = new Date();
+
+    this.cityService.getCityById('2172797')
+      .subscribe(city => console.log(city))
   }
 
   getTemperatureStyle = () => {

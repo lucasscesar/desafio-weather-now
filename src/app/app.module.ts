@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -12,7 +13,8 @@ import { TemperatureFormatPipe } from './pipes/temperature-format/temperature-fo
     TemperatureFormatPipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [TemperatureFormatPipe],
   bootstrap: [AppComponent]

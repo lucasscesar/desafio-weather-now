@@ -16,6 +16,7 @@ import { Card } from 'src/app/models/card.model';
 export class CardComponent implements OnInit, OnDestroy {
   @Input() name: string;
   @Input() details: boolean;
+  @Input() minutesInterval: number;
 
   private subscription: Subscription;
 
@@ -35,20 +36,6 @@ export class CardComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  private handleCookies = (cookieName: string = 'weather') => {
-    const current = AppCore.getCookies(cookieName);
-    let array: Card[];
-
-    if (current) {
-      array = JSON.parse(current);
-    } else {
-      array = [];
-    }
-
-    array.push(this.card);
-    AppCore.setCookies(cookieName, JSON.stringify(array));
-  }
-
   private handleSuccess = (city: City) => {
     this.error = false;
     this.loading = false;
@@ -57,12 +44,10 @@ export class CardComponent implements OnInit, OnDestroy {
     this.card.humidity = city.main.humidity;
     this.card.pressure = city.main.pressure;
     this.card.temperature = Math.floor(city.main.temp);
-
-    // this.handleCookies();
   }
 
   private handleInterval = () => {
-    const minutes = 10 * 60 * 1000;
+    const minutes = this.minutesInterval ? this.minutesInterval * 60 * 1000 : 10 * 60 * 1000
 
     interval(minutes)
       .pipe(flatMap(() => {

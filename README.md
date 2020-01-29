@@ -1,29 +1,56 @@
 # DesafioWeatherNow
 
-## How to install
+## Como instalar
 
-Run `npm install or yarn install`
+Execute `npm install or yarn install`
 
-## How to use
+## Como usar
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Execute `ng serve` para uso em dev e navega na aplicação pelo host `http://localhost:4200/`. As alterações serão automaticamente recarregadas.
 
-## How to Build
+## Como buildar o desafio
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Execute `ng build` para buildar o desafio. Os arquivos de distribuição serão armazenados na pasta `dist/`. Use a flag `--prod` para a distribuição em produção.
 
-## How to learn about this project
+## Como aprender sobre o desafio
+
+O projeto é baseado em componentes e está estruturado da seguinte forma: 
 
 ```
 desafio-weather-now/
-├── dist/
+├── dist/ (arquivos de distribuição)
 └── src/
+    ├── app
+    │   ├── components 
+    │   │   ├── card (componente que monta o card e suas variações)
+    │   │   └── loader (componente que possui o loader)
+    │   │ 
+    │   ├── services (chamadas de APIs)
+    │   │    └── city 
+    │   │
+    │   ├── models (models das abstrações usadas)
+    │   └── app.components.ts (componente principal)
+    │
+    ├── assets
+    │   ├── imgs (imagens do projeto)
+    │   └── scss (global styles)
+    │
+    └── environments (arquivos de ambiente)
+
 ```
 
-## Running unit tests
+### Funcionamento
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+-   `app.components.ts`: faz as chamadas iniciais e possui as cidades que devem ser renderizadas nos cards
+-   `components/card/card.component.ts`: recebe o nome da cidade (parâmetro: `name`), o intervalo de tempo por minuto (parâmetro: `minutesInterval`) e a exibição (parâmetro: `details`) e faz toda a lógica de chamada de api e construção.
+-   `components/loader/loader.component.ts`: responsável pelo loader dentro dos cards e tem a possibilidade de tamanho (parâmetro: `size`)
+-   `service/city.service.ts`: chamada de API para `api.openweathermap.org` buscando as cidades por nome
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Como executar os teste unitários
+
+Execute `ng test` para rodar os testes unitários via [Karma](https://karma-runner.github.io).
+
+## Como executar os testes end-to-end
+
+Execute `ng e2e` para rodar os testes end-to-end via  [Protractor](http://www.protractortest.org/).

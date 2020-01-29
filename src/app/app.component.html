@@ -1,11 +1,28 @@
 <header class="header">
-  <div class="container">
-    <a class="header__link" href="/">
-      <img src="../assets/imgs/logo.svg" alt="logo do desafio weather now" class="header__logo">
-    </a>
+  <div class="grid">
+    <h1 class="header__h1">
+      <a class="header__link" href="/">
+        <img src="../assets/imgs/logo.svg" alt="Desafio weather now" class="header__logo">
+      </a>
+    </h1>
   </div>
 </header>
 
 <main class="main">
-  <div class="container"></div>
+  <div class="grid grid--padding">
+    <div class="grid__row">
+      <!-- <div class="grid__column" *ngFor="let name of ['Nuuk, GL', 'Urubici, BR', 'asdas, KE']">
+        <app-card name="{{name}}"></app-card>
+      </div> -->
+      <div class="grid__column">
+        <app-card name="Nuuk, GL"></app-card>
+      </div>
+      <div class="grid__column">
+        <app-card name="Urubici, BR" details="true"></app-card>
+      </div>
+      <div class="grid__column">
+        <app-card name="asdas, KE"></app-card>
+      </div>
+    </div>
+  </div>
 </main>

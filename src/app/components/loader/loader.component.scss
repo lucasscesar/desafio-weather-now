@@ -1,0 +1,22 @@
+.loader {
+    $self: &;
+
+    &,
+    &--small {
+        #{$self}__svg {
+            width: 80px;
+        }
+    }
+
+    &--medium {
+        #{$self}__svg {
+            width: 100px;
+        }
+    }
+
+    &--big {
+        #{$self}__svg {
+            width: 120px;
+        }
+    }
+}

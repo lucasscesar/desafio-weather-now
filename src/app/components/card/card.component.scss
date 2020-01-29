@@ -1,0 +1,84 @@
+@import "variables";
+@import 'functions';
+@import 'mixin-placeholder';
+
+.card {
+    $self: &;
+    box-shadow: 2px 2px 7px 4px color("shadow");
+    border-radius: 4px;
+    background: color("white");
+    text-align: center;
+
+    &__content {
+        padding: 40px 0;
+
+        &--success {
+            padding: 30px 0 0;
+        }
+    }
+
+    &__title {
+        font-size: calc(#{$f-default} + 4px);
+        font-weight: 400;
+        margin: 0;
+        padding: 15px 0;
+        border-bottom: 1px solid color("divider");
+    }
+
+    &__temperature {
+        font-size: $f-number;
+        margin: 0 0 30px;
+
+        &--hot {
+            color: color("hot");
+        }
+
+        &--cold {
+            color: color("cold");
+        }
+
+        &--neutral {
+            color: color("neutral");
+        }
+    }
+
+    &__climate {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 15px 30px;
+        background: color("cardFooter");
+
+        @include media-queries('phone-wide') {
+            padding: 15px 40px;
+        }
+    }
+
+    &__info {
+        margin: 0 0 15px;
+        color: color("secondary");
+    }
+
+    &__info-strong {
+        color: color("primary");
+        display: block;
+        margin-top: 5px;
+
+        sub {
+            bottom: 0;
+        }
+    }
+
+    &__updated {
+        color: color("secondary");
+        font-size: $f-infos;
+        width: 100%;
+    }
+
+    &__warning {
+        margin: 0 0 20px;
+        color: color("hot");
+        font-weight: 700;
+        line-height: 19px;
+    }
+}

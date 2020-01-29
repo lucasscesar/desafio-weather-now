@@ -1,7 +1,7 @@
 @import "variables";
 @import 'functions';
 
-$heightH: 54px;
+$heightH: 50px;
 
 .header {
     background: color("white");
@@ -9,6 +9,12 @@ $heightH: 54px;
     top: 0;
     padding: 10px 0;
     text-align: center;
+    z-index: 9;
+
+    &__h1 {
+        margin: 0;
+        line-height: 0;
+    }
 
     &__link {
         display: inline-block;
@@ -23,4 +29,6 @@ $heightH: 54px;
 .main {
     min-height: calc(100vh - #{$heightH});
     background: color("app");
+    display: flex;
+    align-items: center;
 }

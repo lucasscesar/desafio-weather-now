@@ -1,4 +1,65 @@
-.container {
-    max-width: 1140px;
-    margin: auto;
+.grid {
+    width: 100%;
+    padding-right: $glutter;
+    padding-left: $glutter;
+    margin-right: auto;
+    margin-left: auto;
+
+    &--padding {
+        padding-top: #{$glutter / 2};
+        padding-bottom: #{$glutter / 2};
+    }
+
+    &,
+    &__column {
+        box-sizing: border-box;
+    }
+
+    &__row {
+        margin: 0 #{-$glutter};
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    &__column {
+        padding: #{$glutter / 2} $glutter;
+        width: 100%;
+    }
+
+    @include media-queries('phone-wide') {
+        max-width: 720px;
+
+        &__column {
+            width: calc(100% / 2);
+        }
+    }
+
+    @include media-queries ('tablet') {
+        max-width: 960px;
+
+        &__column {
+            width: calc(100% / 3);
+        }
+    }
+
+    @include media-queries('desktop') {
+        max-width: 1140px;
+    }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.button {
+    @include button;
 }

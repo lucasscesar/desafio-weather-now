@@ -16,6 +16,7 @@ import { Card } from 'src/app/models/card.model';
 export class CardComponent implements OnInit, OnDestroy {
   @Input() name: string;
   @Input() details: boolean;
+  @Input() minutesInterval: number;
 
   private subscription: Subscription;
 
@@ -46,7 +47,7 @@ export class CardComponent implements OnInit, OnDestroy {
   }
 
   private handleInterval = () => {
-    const minutes = 10 * 60 * 1000;
+    const minutes = this.minutesInterval ? this.minutesInterval * 60 * 1000 : 10 * 60 * 1000
 
     interval(minutes)
       .pipe(flatMap(() => {

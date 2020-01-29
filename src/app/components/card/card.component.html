@@ -1,31 +1,35 @@
 <section class="card">
-    <h2 class="card__title">{{city.name}}</h2>
-    <div class="card__content">
-        <h3 class="card__temperature" ngClass="{{getTemperatureStyle()}}">{{city.temperature}}°</h3>
-        <div class="card__climate">
-            <p class="card__info">
-                HUMIDIY
-                <strong class="card__info-strong">{{city.humidity}}<sub>%</sub></strong>
-            </p>
-            <p class="card__info">
-                PRESSURE
-                <strong class="card__info-strong">{{city.pressure}}<sub>hPa</sub></strong>
-            </p>
-            <small class="card__updated">Updated at {{lastUpdate | date:'mediumTime' }}</small>
-        </div>
+    <h2 class="card__title">{{card.name}}</h2>
+
+    <div class="card__content" *ngIf="isLoading(); else elseBlock">
+        <app-loader></app-loader>
     </div>
 </section>
-<!-- <section class="card card--error">
-    <h2 class="card__title">Urubici, BR</h2>
+
+<ng-template #elseBlock>
+    <ng-container *ngIf="hasError(); then errorBlock else successBlock"></ng-container>
+</ng-template>
+
+<ng-template #errorBlock>
     <div class="card__content">
         <p class="card__warning">Something went wrong</p>
-        <button class="button button--secondary">Try again</button>
+        <button class="button button--secondary" (click)="callAPI()">Try again</button>
     </div>
-</section>
-<section class="card card--loading">
-    <h2 class="card__title">Urubici, BR</h2>
-    <div class="card__content">
-        <span class="sr-only">carregando conteúdo</span>
-        <img class="card__svg-loading" src="/assets/imgs/loader.svg" alt="loading dos cards">
+</ng-template>
+
+<ng-template #successBlock>
+    <div class="card__content card__content--success">
+        <h3 class="card__temperature" ngClass="{{getTemperatureStyle()}}">{{card.temperature}}°</h3>
+        <div class="card__climate">
+            <p class="card__info" *ngIf="isDetails()">
+                HUMIDIY
+                <strong class="card__info-strong">{{card.humidity}}<sub>%</sub></strong>
+            </p>
+            <p class="card__info" *ngIf="isDetails()">
+                PRESSURE
+                <strong class="card__info-strong">{{card.pressure}}<sub>hPa</sub></strong>
+            </p>
+            <small class="card__updated">Updated at {{card.lastUpdated | date:'mediumTime' }}</small>
+        </div>
     </div>
-</section> -->
+</ng-template>

@@ -11,8 +11,17 @@
 <main class="main">
   <div class="grid grid--padding">
     <div class="grid__row">
-      <div class="grid__column" *ngFor="let id of ids">
-        <app-card id="{{id}}"></app-card>
+      <!-- <div class="grid__column" *ngFor="let name of ['Nuuk, GL', 'Urubici, BR', 'asdas, KE']">
+        <app-card name="{{name}}"></app-card>
+      </div> -->
+      <div class="grid__column">
+        <app-card name="Nuuk, GL"></app-card>
+      </div>
+      <div class="grid__column">
+        <app-card name="Urubici, BR" details="true"></app-card>
+      </div>
+      <div class="grid__column">
+        <app-card name="asdas, KE"></app-card>
       </div>
     </div>
   </div>

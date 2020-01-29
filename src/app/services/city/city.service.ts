@@ -10,7 +10,7 @@ import { City } from '../../models/city.model';
 export class CityService {
   constructor(private http: HttpClient) { }
 
-  getCityById(id: string): Observable<City> {
-    return this.http.get<City>(`${environment.CITY_BY_ID}&id=${id}`);
+  getCityByName(name: string): Observable<City> {
+    return this.http.get<City>(`${environment.WEATHER}&q=${name}`);
   }
 }

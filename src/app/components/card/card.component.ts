@@ -1,7 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+
+import { AppCore } from '../../app.core';
 import { City } from '../../models/city.model';
-import { TemperatureFormatPipe } from '../../pipes/temperature-format/temperature-format.pipe';
 import { CityService } from '../../services/city/city.service';
+import { Card } from 'src/app/models/card.model';
 
 @Component({
   selector: 'app-card',
@@ -9,34 +13,99 @@ import { CityService } from '../../services/city/city.service';
   styleUrls: ['./card.component.scss']
 })
 
-export class CardComponent implements OnInit {
-  @Input() id: string;
+export class CardComponent implements OnInit, OnDestroy {
+  @Input() name: string;
+  @Input() details: boolean;
 
-  city: City;
-  lastUpdate: Date;
+  private subscription: Subscription;
 
-  constructor(private pipe: TemperatureFormatPipe, private cityService: CityService) {
-    this.getCity();
+  card: Card;
+  error: boolean = true;
+  loading: boolean = true;
+
+  constructor(private cityService: CityService) { }
+
+  ngOnInit() {
+    this.card = new Card(this.name);
+    this.callAPI();
+    this.handleInterval();
   }
 
-  ngOnInit() { }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
-  getCity = () => {
-    this.city = new City('2172797', 'São Paulo, BR', this.pipe.transform(88), 77, 1007);
-    this.lastUpdate = new Date();
+  private handleCookies = (cookieName: string = 'weather') => {
+    const current = AppCore.getCookies(cookieName);
+    let array: Card[];
 
-    this.cityService.getCityById('2172797')
-      .subscribe(city => console.log(city))
+    if (current) {
+      array = JSON.parse(current);
+    } else {
+      array = [];
+    }
+
+    array.push(this.card);
+    AppCore.setCookies(cookieName, JSON.stringify(array));
+  }
+
+  private handleSuccess = (city: City) => {
+    this.error = false;
+    this.loading = false;
+
+    this.card.lastUpdated = new Date();
+    this.card.humidity = city.main.humidity;
+    this.card.pressure = city.main.pressure;
+    this.card.temperature = Math.floor(city.main.temp);
+
+    // this.handleCookies();
+  }
+
+  private handleInterval = () => {
+    const minutes = 10 * 60 * 1000;
+
+    interval(minutes)
+      .pipe(flatMap(() => {
+        this.loading = true;
+        return this.cityService.getCityByName(this.name)
+      }))
+      .subscribe(
+        city => this.handleSuccess(city),
+        err => {
+          this.error = true;
+          this.loading = false;
+
+          AppCore.handleError(err);
+        });
+  }
+
+  callAPI = () => {
+    this.loading = true;
+
+    this.cityService.getCityByName(this.name).subscribe(
+      city => this.handleSuccess(city),
+      err => {
+        this.error = true;
+        this.loading = false;
+
+        AppCore.handleError(err);
+      });
   }
 
   getTemperatureStyle = () => {
-    if (this.city.temperature <= 5) {
+    if (this.card.temperature <= 5) {
       return 'card__temperature--cold';
-    } else if (this.city.temperature > 5 && this.city.temperature <= 25) {
+    } else if (this.card.temperature > 5 && this.card.temperature <= 25) {
       return 'card__temperature--neutral';
     } else {
       return 'card__temperature--hot';
     }
   }
+
+  hasError = () => this.error;
+
+  isLoading = () => this.loading;
+
+  isDetails = () => this.details;
 
 }

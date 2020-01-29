@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  CITY_BY_ID: 'https://samples.openweathermap.org/data/2.5/weather?appid=b6907d289e10d714a6e88b30761fae22'
+  WEATHER: 'https://api.openweathermap.org/data/2.5/weather?appid=70addcc5891a16302706c9f4782299cb&units=metric'
 };
 
 /*
